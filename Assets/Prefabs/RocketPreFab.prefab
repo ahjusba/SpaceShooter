@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3a084e0f754d348875a8729f6e3873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletVelocity: 10
   muzzleFlash: {fileID: 4342359539999081083, guid: f34f731be4618d649a7d712a877e4f5d, type: 3}
+  hitFlash: {fileID: 5698206241116459252, guid: b9a179ded6c9add42b00110958a4255d, type: 3}
 --- !u!212 &1119990242251009453
 SpriteRenderer:
   m_ObjectHideFlags: 0

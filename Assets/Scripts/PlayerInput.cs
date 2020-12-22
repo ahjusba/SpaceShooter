@@ -25,20 +25,24 @@ public class PlayerInput : MonoBehaviour {
         verticalDirection = Input.GetAxisRaw("Vertical");
         direction = new Vector2(horizontalDirection, verticalDirection);
 
-        if (Input.GetKey(KeyCode.Z)) {
+        if (Input.GetKey(KeyCode.X)) {
             warpActive = true;
         }
 
-        if (Input.GetKey(KeyCode.X)) {
+        if (Input.GetKey(KeyCode.C)) {
             machinegunActive = true;
         }
 
-        if (Input.GetKey(KeyCode.C)) {
+        if (Input.GetKey(KeyCode.V)) {
             rocketsActive = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) {
-            reloadActive = true;
+        //if (Input.GetKeyDown(KeyCode.R)) {
+        //    reloadActive = true;
+        //}
+
+        if (Input.GetKey(KeyCode.Escape)) {
+            Application.Quit();
         }
     }
 

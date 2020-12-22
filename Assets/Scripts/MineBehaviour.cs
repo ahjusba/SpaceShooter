@@ -41,6 +41,7 @@ public class MineBehaviour : MonoBehaviour {
     IEnumerator Explode(float timer) {
         yield return new WaitForSeconds(timer);
         InstantiateCircle();
+        AudioFW.Play("MineExplode");
         Destroy(this.gameObject);
     }
 
@@ -53,7 +54,7 @@ public class MineBehaviour : MonoBehaviour {
 
             Vector3 position = transform.position + (direction * spawnRadius);
             GameObject bullet = Instantiate(projectilePrefab, position, rotation);
-            bullet.GetComponent<ProjectileBehaviour>().SetStats(bulletRb.velocity, shotDamage, bulletSpeed, direction, gameObject.transform);
+            bullet.GetComponent<ProjectileBehaviour>().SetStats(bulletRb.velocity, shotDamage, bulletSpeed, direction, gameObject.transform, "FighterGunHit");
         }
     }
 
@@ -90,6 +91,7 @@ public class MineBehaviour : MonoBehaviour {
         if (collision.transform != shooter) {
             if (collision.GetComponent<IDamageable>() != null) {
                 collision.GetComponent<IDamageable>().ApplyDamage(projectileDmg);
+                AudioFW.Play("MineExplode");
                 Destroy(this.gameObject);
             }
         }

@@ -10,6 +10,8 @@ public class RockBehaviour : MonoBehaviour, IDamageable {
     public float acceleration = 0.05f; //If the Y-velocity is not correct, it will accelerate towards it with this speed per fixed update
     public float health = 1000f;
 
+    float adjustedXVel;
+
     public bool spawnRocksOnDestroy = true;
     public GameObject smallerRock;
     public int spawnAmount;
@@ -39,13 +41,20 @@ public class RockBehaviour : MonoBehaviour, IDamageable {
         rbRock.velocity = new Vector2(rockVelocityX, -rockVelocityY);
         rbRock.rotation = Random.Range(0, 180);
         randomRotation = Random.Range(-0.5f, 0.5f);
+        Destroy(this.gameObject, 15f);
     }
 
     private void FixedUpdate() {
         rbRock.rotation += randomRotation;
 
+        if(Mathf.Abs(rbRock.velocity.x) > 1) {
+            adjustedXVel = rbRock.velocity.x * 0.8f;
+        } else {
+            adjustedXVel = rbRock.velocity.x;
+        }
+
         if(rbRock.velocity.y > rockVelocityY) {
-            rbRock.velocity = new Vector2(rbRock.velocity.x, rbRock.velocity.y - acceleration);
+            rbRock.velocity = new Vector2(adjustedXVel, rbRock.velocity.y - acceleration);
         }
     }
 
@@ -73,6 +82,9 @@ public class RockBehaviour : MonoBehaviour, IDamageable {
                 rb.AddForce(direction * explosionForce, ForceMode2D.Force);
             }
         }
+
+        AudioFW.Play("RockDead");
+        AudioFW.Play("RockShatter");
 
         Destroy(this.gameObject);
     }

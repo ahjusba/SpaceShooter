@@ -7,11 +7,13 @@ public struct EnemySpawnStruct {
     float timeStamp;
     int unitIndex;
     int unitCount;
+    int spawner;
 
-    public EnemySpawnStruct(float timeStamp, int unitIndex, int unitCount) {
+    public EnemySpawnStruct(float timeStamp, int unitIndex, int unitCount, int spawner) {
         this.timeStamp = timeStamp;
         this.unitIndex = unitIndex;
         this.unitCount = unitCount;
+        this.spawner = spawner;
     }
 
     public float GetTimeStamp() {
@@ -22,5 +24,8 @@ public struct EnemySpawnStruct {
     }
     public int GetUnitIndex() {
         return unitIndex;
+    }
+    public int GetSpawner() {
+        return spawner;
     }
 }

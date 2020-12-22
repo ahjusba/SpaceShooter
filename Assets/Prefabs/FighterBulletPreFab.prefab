@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 4994144689590418660, guid: 7cda4bcf9fd5f6340984594d2f80c5c8, type: 3}
-  isPlayerProjectile: 0
+  hitFlash: {fileID: 5698206241116459252, guid: b9a179ded6c9add42b00110958a4255d, type: 3}
 --- !u!212 &4928002435451104803
 SpriteRenderer:
   m_ObjectHideFlags: 0

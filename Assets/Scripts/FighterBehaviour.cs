@@ -36,15 +36,18 @@ public class FighterBehaviour : MonoBehaviour, IDamageable {
         //Spawn seperate particleFX
         //Instantiate(explosionFX, transform.position, Quaternion.identity);
         //Explosion sound   
-
+        AudioFW.Play("FighterDead");
         Destroy(this.gameObject);
     }
 
     private void Awake() {
+        secondsPerShot = Random.Range(secondsPerShot - 0.2f, secondsPerShot + 0.2f);
         rb = GetComponent<Rigidbody2D>();
         target = FindObjectOfType<PlayerController>();
         RotateTowards(target.transform.position);
         MoveTowards(target.transform.position);
+        StartCoroutine(FireCooldown(1.5f));
+        Destroy(this.gameObject.transform.parent.gameObject, 15f);
     }
 
     private void FixedUpdate() {
@@ -56,8 +59,9 @@ public class FighterBehaviour : MonoBehaviour, IDamageable {
 
         if (!hasFired) {
             StartCoroutine(FireCooldown(secondsPerShot));
+            AudioFW.Play("FighterGunFire");
             GameObject bullet = Instantiate(projectilePreFab, nose.position, transform.rotation, projectileParent);
-            bullet.GetComponent<ProjectileBehaviour>().SetStats(rb.velocity, shotDamage, bulletSpeed, direction, gameObject.transform);
+            bullet.GetComponent<ProjectileBehaviour>().SetStats(rb.velocity, shotDamage, bulletSpeed, direction, gameObject.transform, "FighterGunHit");
         }
     }
 

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
-{
+public class PlayerAttack : MonoBehaviour {
     [SerializeField] int rocketsPerClip = 5;
-    [SerializeField] int bulletsPerClip = 30;
+    [SerializeField] int bulletsPerClip = 99999;
 
     [SerializeField] float rocketDmg = 1000;
     [SerializeField] float bulletDmg = 50;
@@ -37,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
 
     Rigidbody2D playerRb; //Used to give the projectiles speed based on player speed
 
-   
+
 
     bool isShootingGun = false;
     bool isShootingRocket = false;
@@ -53,9 +52,9 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void Update() {
-        if(rocketsInClip < rocketsPerClip) {
+        if (rocketsInClip < rocketsPerClip) {
             rocketTimer += Time.deltaTime;
-            if(rocketTimer >= rocketReloadTime) {
+            if (rocketTimer >= rocketReloadTime) {
                 rocketsInClip++;
                 rocketTimer -= rocketReloadTime; //Sets to around zero, depending on how long the last update was. Correct way to do this.
             }
@@ -63,50 +62,52 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void Attack(bool machineGunActive, bool rocketsActive, bool reloadActive) {
-        if (machineGunActive && !gunReloadInProgress) {            
+        if (machineGunActive && !gunReloadInProgress) {
             ShootGun();
         } else if (reloadActive && bulletsInClip < bulletsPerClip) {
             ReloadGun();
         }
 
-        if(rocketsActive) {
+        if (rocketsActive) {
             ShootRockets();
         }
     }
 
     public void ShootGun() {
-        if(bulletsInClip > 0) {
+        if (bulletsInClip > 0) {
             if (!isShootingGun) {
                 newBullet = Instantiate(bulletPreFab, nosePos.position, Quaternion.identity, nosePos);
-                newBullet.GetComponent<ProjectileBehaviour>().SetStats(playerRb.velocity, bulletDmg, bulletSpeed, Vector2.up, gameObject.transform);
-                bulletsInClip--;                
+                AudioFW.Play("PlayerGunFire");
+                newBullet.GetComponent<ProjectileBehaviour>().SetStats(playerRb.velocity, bulletDmg, bulletSpeed, Vector2.up, gameObject.transform, "PlayerGunHit");
+                bulletsInClip--;
                 StartCoroutine(GunCooldown(secPerBullet));
-            }            
+            }
         } else {
             ReloadGun();
         }
     }
 
     public void ShootRockets() {
-        if(rocketsInClip > 0) {
-            if (!isShootingRocket) {               
+        if (rocketsInClip > 0) {
+            if (!isShootingRocket) {
+                AudioFW.Play("PlayerRocketFire");
                 newRocket = Instantiate(rocketPreFab, currentWing.position, Quaternion.identity, currentWing);
-                newRocket.GetComponent<ProjectileBehaviour>().SetStats(playerRb.velocity, rocketDmg, rocketSpeed, Vector2.up, gameObject.transform);
+                newRocket.GetComponent<ProjectileBehaviour>().SetStats(playerRb.velocity, rocketDmg, rocketSpeed, Vector2.up, gameObject.transform, "PlayerRocketHit");
                 rocketsInClip--;
-                if(currentWing == rightWingPos) {
+                if (currentWing == rightWingPos) {
                     currentWing = leftWingPos;
                 } else {
                     currentWing = rightWingPos;
                 }
                 StartCoroutine(RocketCooldown(secPerRocket));
-            }            
+            }
         }
     }
 
     public void ReloadGun() {
         if (!gunReloadInProgress) {
             StartCoroutine(ReloadCooldown(clipReloadTime));
-        }        
+        }
     }
 
     IEnumerator GunCooldown(float time) {

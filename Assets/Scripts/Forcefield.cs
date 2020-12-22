@@ -46,7 +46,14 @@ public class Forcefield : MonoBehaviour
 
         for(int i = 0; i < rigidbodys.Count; i++) {
             timers[i] += Time.fixedDeltaTime;
-            rigidbodys[i].AddForce(pushDirection * pushForce * timers[i] * timers[i]);
+
+            if(rigidbodys[i].GetComponent<RockBehaviour>() != null) {
+                rigidbodys[i].AddForce(pushDirection * pushForce * timers[i]);
+            } else {
+                rigidbodys[i].AddForce(pushDirection * pushForce * timers[i] * timers[i]);
+            }
+
+            
         }    
     }
 
