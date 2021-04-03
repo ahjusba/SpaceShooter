@@ -81,15 +81,15 @@ public class EnemySpawner : MonoBehaviour {
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(38, 1, 3, 1);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(38, 0, 1, 3);
-        wave1.Add(enemy);
+        //enemy = new EnemySpawnStruct(38, 0, 1, 3);
+        //wave1.Add(enemy);
         enemy = new EnemySpawnStruct(38, 0, 1, 4);
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(39, 0, 3, 1);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(39, 0, 3, 3);
+        enemy = new EnemySpawnStruct(39, 0, 2, 3);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(40, 2, 3, 1);
+        enemy = new EnemySpawnStruct(40, 2, 2, 1);
         wave1.Add(enemy);
 
         //Fighters Wave1 45 - 75
@@ -99,7 +99,7 @@ public class EnemySpawner : MonoBehaviour {
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(49, 3, 3, 1);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(51, 3, 3, 1);
+        enemy = new EnemySpawnStruct(51, 3, 2, 1);
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(53, 1, 2, 1);
         wave1.Add(enemy);
@@ -113,11 +113,11 @@ public class EnemySpawner : MonoBehaviour {
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(61, 3, 1, 4);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(65, 3, 3, 1);
+        enemy = new EnemySpawnStruct(65, 3, 2, 1);
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(68, 0, 3, 1);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(70, 3, 2, 1);
+        enemy = new EnemySpawnStruct(70, 3, 1, 1);
         wave1.Add(enemy);
 
         //MineLayers 75 - 115
@@ -139,13 +139,13 @@ public class EnemySpawner : MonoBehaviour {
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(92, 0, 1, 4);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(97, 3, 3, 1);
+        enemy = new EnemySpawnStruct(97, 3, 2, 1);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(102, 4, 3, 1);
+        enemy = new EnemySpawnStruct(102, 4, 2, 1);
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(105, 0, 1, 4);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(110, 4, 3, 1);
+        enemy = new EnemySpawnStruct(110, 4, 2, 1);
         wave1.Add(enemy);
 
         //Layers 115-...
@@ -187,7 +187,7 @@ public class EnemySpawner : MonoBehaviour {
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(180, 5, 1, 4);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(180, 4, 3, 1);
+        enemy = new EnemySpawnStruct(180, 4, 1, 1);
         wave1.Add(enemy);
         enemy = new EnemySpawnStruct(182, 6, 1, 3);
         wave1.Add(enemy);
@@ -231,12 +231,12 @@ public class EnemySpawner : MonoBehaviour {
         //Bossfight 240 - ...
         enemy = new EnemySpawnStruct(245, 3, 1, 4);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(250, 3, 1, 5);
+        //enemy = new EnemySpawnStruct(250, 3, 1, 5);
+        //wave1.Add(enemy);
+        enemy = new EnemySpawnStruct(255, 3, 1, 3);
         wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(255, 3, 1, 4);
-        wave1.Add(enemy);
-        enemy = new EnemySpawnStruct(260, 3, 1, 5);
-        wave1.Add(enemy);
+        //enemy = new EnemySpawnStruct(260, 3, 1, 5);
+        //wave1.Add(enemy);
     }
 
     private void Update() {

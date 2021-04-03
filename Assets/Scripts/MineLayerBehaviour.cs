@@ -7,7 +7,7 @@ public class MineLayerBehaviour : MonoBehaviour, IDamageable {
     float currentSpeed;
     [SerializeField] float startSpeed = 1f;
     float startUpTime;
-    [SerializeField] float speed = 0.2f;
+    [SerializeField] float speed = 0.3f;
 
     [SerializeField] float health = 700f;
 
@@ -42,7 +42,7 @@ public class MineLayerBehaviour : MonoBehaviour, IDamageable {
     }
 
     private void Awake() {
-        secondsPerShot = Random.Range(2.5f, 5f);
+        secondsPerShot = Random.Range(2.5f, 3f);
         startUpTime = Random.Range(0.2f, 1.4f);
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(InitialSpeed());
@@ -63,7 +63,7 @@ public class MineLayerBehaviour : MonoBehaviour, IDamageable {
     }
 
     IEnumerator InitialSpeed() {
-        currentSpeed = startSpeed;
+        currentSpeed = speed;
         yield return new WaitForSeconds(startUpTime);
         currentSpeed = speed;
     }

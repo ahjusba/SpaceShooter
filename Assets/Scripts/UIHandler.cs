@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour {
 
-    float fadeTimeStamp = 8f;
+    float fadeTimeStamp = 15f;
     float fadeTime = 2f;
     float t = 0;
 

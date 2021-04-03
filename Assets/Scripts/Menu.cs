@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour {
 
     float health = 0;
     public void Normal() {
-        health = 1;
+        health = 3;
         PlayerPrefs.SetFloat("health", health);
         SceneManager.LoadScene(1);
     }

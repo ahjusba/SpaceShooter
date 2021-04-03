@@ -17,15 +17,34 @@ public class PlayerHealth : MonoBehaviour, IDamageable {
     public Image spacecontrol;
 
     Rigidbody2D playerRB;
+    bool isInvulnerable = false;
+    SpriteRenderer playerImage;
+
+    public GameObject damageParticles;
 
     private void Awake() {
         health = PlayerPrefs.GetFloat("health", 1);
         spacecontrol.gameObject.SetActive(false);
         playerRB = GetComponent<Rigidbody2D>();
+        playerImage = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    IEnumerator DamageTaken() {
+        isInvulnerable = true;
+        Instantiate(damageParticles, gameObject.transform);
+        AudioFW.Play("PlayerTakeDamage");
+        playerImage.color = new Color(1,1,1,0.5f);
+        yield return new WaitForSeconds(1f);
+        playerImage.color = new Color(1, 1, 1, 1);
+        isInvulnerable = false;
     }
 
     public void ApplyDamage(float damage) {
-        health -= damage;
+        if (!isInvulnerable) {
+            StartCoroutine("DamageTaken");
+            health -= 1;
+        }
+        
         print("Took damage");
         if (health <= 0 && !isDoomed) {
             emergencyProtocol = true;
